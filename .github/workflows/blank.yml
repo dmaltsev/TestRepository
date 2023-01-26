@@ -18,6 +18,9 @@ jobs:
         # Check number of reviews
        - id: 'reviews'
          uses: jrylan/github-action-reviews-counter@main
+         with:
+          repo-token: '${{ secrets.TOKEN }}'
+         
 
        # Checkout
        - name: Checkout Sources
