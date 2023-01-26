@@ -19,8 +19,8 @@ jobs:
          uses: jrylan/github-action-reviews-counter@v1.0.0
 
        # Checkout
-       - if: steps.reviews.outputs.approved >= 1 && steps.reviews.outputs.changes_requested == 0
        - name: Checkout Sources
+         if: steps.reviews.outputs.approved >= 1 && steps.reviews.outputs.changes_requested == 0
          uses: actions/checkout@v3
          
        - name: Setup Node
