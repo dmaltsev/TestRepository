@@ -17,7 +17,7 @@ jobs:
      steps:
         # Check number of reviews
        - id: 'reviews'
-         uses: jrylan/github-action-reviews-counter@v1.0.0
+         uses: jrylan/github-action-reviews-counter@main
 
        # Checkout
        - name: Checkout Sources
