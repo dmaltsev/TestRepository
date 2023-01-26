@@ -20,10 +20,12 @@ jobs:
          with:
           repo-token: '${{ secrets.TOKEN }}'
          
-
+       - # Conditionally run the next step
+        if: 'steps.reviews.outputs.approved >= 1 && steps.reviews.outputs.changes_requested == 0'
+        uses: actions/checkout@v3
        # Checkout
-       - name: Checkout Sources
-         uses: actions/checkout@v3
+#       - name: Checkout Sources
+ #        uses: actions/checkout@v3
          
        - name: Setup Node
          uses: actions/setup-node@v1
