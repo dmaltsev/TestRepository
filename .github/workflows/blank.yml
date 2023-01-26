@@ -10,7 +10,7 @@ on:
 jobs:
   build:
      if: github.event.review.state == 'approved'
-     runs-on: Github
+     runs-on: [Github]
      
      steps:
        # Runs a single command using the runners shell
