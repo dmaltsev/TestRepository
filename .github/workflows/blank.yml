@@ -17,7 +17,7 @@ jobs:
     - id: reviews
       uses: jrylan/github-action-reviews-counter@v1.0.0
       with:
-        repo-token: '${{ secrets.INVALID_TOKEN }}'
+        repo-token: '${{ secrets.TOKEN }}'
 
     - name: Echo approved
       run: echo '${{ steps.reviews.outputs.approved }}'
