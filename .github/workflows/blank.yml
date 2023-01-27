@@ -20,9 +20,9 @@ jobs:
          with:
           repo-token: '${{ secrets.TOKEN }}'
          
-       - # Conditionally run the next step
-        if: 'steps.reviews.outputs.approved <= 1 && steps.reviews.outputs.changes_requested > 0'
-        run: exit 1
+       - name: Check approvals
+         if: 'steps.reviews.outputs.approved <= 1 && steps.reviews.outputs.changes_requested > 0'
+         run: exit 1
 
        - name: Checkout
          uses: actions/checkout@v3
