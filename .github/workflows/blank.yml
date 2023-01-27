@@ -22,7 +22,7 @@ jobs:
          
        - # Conditionally run the next step
         if: 'steps.reviews.outputs.approved <= 1 && steps.reviews.outputs.changes_requested > 0'
-        run: exit 0
+        run: exit 1
 
        - name: Checkout
          uses: actions/checkout@v3
