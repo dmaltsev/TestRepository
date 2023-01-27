@@ -19,6 +19,9 @@ jobs:
       with:
         repo-token: '${{ secrets.TOKEN }}'
 
+    - name: Echo
+      run: echo '${{ steps.reviews.outputs.approved >= 1 && steps.reviews.outputs.changes_requested == 0 }}'
+
   build:
     runs-on: [self-hosted]
     needs: check
