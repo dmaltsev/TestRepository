@@ -20,10 +20,10 @@ jobs:
         repo-token: '${{ secrets.TOKEN }}'
 
     - name: Echo approved
-      run: echo '${{ steps.reviews.outputs.approved >= 1 }}'
+      run: echo '${{ steps.reviews.outputs.approved }}'
       
     - name: Echo changes requested
-      run: echo '${{ steps.reviews.outputs.changes_requested == 0 }}'      
+      run: echo '${{ steps.reviews.outputs.changes_requested }}'      
 
   build:
     runs-on: [self-hosted]
