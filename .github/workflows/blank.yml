@@ -24,6 +24,12 @@ jobs:
       
     - name: Echo changes requested
       run: echo '${{ steps.reviews.outputs.changes_requested }}'      
+      
+    - name: Echo commented
+      run: echo '${{ steps.reviews.outputs.commented }}'      
+      
+    - name: Echo pending
+      run: echo '${{ steps.reviews.outputs.pending }}'      
 
   build:
     runs-on: [self-hosted]
