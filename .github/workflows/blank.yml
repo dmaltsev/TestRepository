@@ -11,7 +11,7 @@ on:
 
 jobs:
   echo:
-    if: ${{ github.event.action }} == 'opened'
+    if: ${{ github.event.action }} == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
     - name: Echo
@@ -20,24 +20,21 @@ jobs:
   check:    
     runs-on: [self-hosted]
     outputs:
-      status: steps.reviews.outputs.approved >= 1 && steps.reviews.outputs.changes_requested == 0
+      status: ${{ steps.approved.outputs.approved == 'true' }}
     steps:
-    - id: reviews
-      uses: jrylan/github-action-reviews-counter@v1.0.0
+    - uses: luisrjaeger/approved-event-checker@1.0.0
+      id: approved
       with:
-        repo-token: '${{ secrets.TOKEN }}'
-
-    - name: Echo approved
-      run: echo '${{ steps.reviews.outputs.approved }}'
-      
-    - name: Echo changes requested
-      run: echo '${{ steps.reviews.outputs.changes_requested }}'      
+        approvals: 2
+        check_changes_requested: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}     
 
   build:
     runs-on: [self-hosted]
     needs: check
  
-    if: needs.check.outputs.status == true
+    if:  ${{ needs.check.outputs.status == 'true' }}
      
     steps:
     - name: Checkout
