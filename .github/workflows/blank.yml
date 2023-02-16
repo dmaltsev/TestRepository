@@ -4,12 +4,19 @@ name: CI
 
 on:
   workflow_dispatch:
-  #pull_request:
-   # types: [labeled, ready_for_review]
-  #pull_request_review:
-   # types: [edited, dismissed, submitted]
+  pull_request:
+    types: [labeled, ready_for_review]
+  pull_request_review:
+    types: [edited, dismissed, submitted]
 
 jobs:
+  echo:
+    if: ${{ github.event.action }} == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Echo
+      run: echo 'Some Text'
+      
   check:    
     runs-on: [self-hosted]
     outputs:
